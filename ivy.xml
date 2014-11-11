@@ -1,0 +1,16 @@
+<ivy-module version="2.0">
+    <info organisation="org.apache" module="go-ivy"/>
+    <dependencies>
+        <dependency org="postgresql" name="postgresql" rev="9.1-901.jdbc4"/>
+	<dependency org="joda-time" name="joda-time" rev="2.5"/>
+	<dependency org="javax.servlet" name="servlet-api" rev="2.5"/>
+	<dependency org="junit" name="junit" rev="3.8.1"/>
+	<dependency org="javax.servlet" name="jstl" rev="1.2"/>
+	<dependency org="com.google.code.gson" name="gson" rev="2.3"/>
+
+	<!--dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.0.5"/-->
+
+	<!--dependency org="net.sf.jasperreports" name="jasperreports" rev="5.1.0" conf="*->default"/-->	
+
+    </dependencies>
+</ivy-module>

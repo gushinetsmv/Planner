@@ -1,0 +1,30 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+	      http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+    <display-name>Planner Web Application</display-name>
+    <servlet>
+        <servlet-name>planner-servlet</servlet-name>
+        <servlet-class>com.mika.assesment.servlet.PlannerServlet</servlet-class>
+        <!-- TODO: configuration properties file; see ant placeholders hanling-->
+    </servlet>
+
+    <servlet>
+        <servlet-name>exportReport</servlet-name>
+        <servlet-class>com.mika.assesment.servlet.ExportReportServlet</servlet-class>
+        <!-- TODO: configuration properties file; see ant placeholders hanling-->
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>planner-servlet</servlet-name>
+        <url-pattern>/planner-servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>exportReport</servlet-name>
+        <url-pattern>/export-report</url-pattern>
+    </servlet-mapping>
+
+</web-app>
