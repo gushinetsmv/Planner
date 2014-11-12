@@ -1,7 +1,10 @@
 package com.mika.assesment.model;
 
 /**
- * Created by ТСД on 26.10.2014.
+ * Report entity model.
+ *
+ * @author Mikhail Gushinets
+ * @since 07/11/14
  */
 public class ReportEntry {
     private Long employeeId;

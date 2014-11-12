@@ -7,13 +7,23 @@
     <servlet>
         <servlet-name>planner-servlet</servlet-name>
         <servlet-class>com.mika.assesment.servlet.PlannerServlet</servlet-class>
-        <!-- TODO: configuration properties file; see ant placeholders hanling-->
+        <init-param>
+            <param-name>config.name</param-name>
+            <param-value>config.properties</param-value>
+        </init-param>
     </servlet>
 
     <servlet>
         <servlet-name>exportReport</servlet-name>
         <servlet-class>com.mika.assesment.servlet.ExportReportServlet</servlet-class>
-        <!-- TODO: configuration properties file; see ant placeholders hanling-->
+        <init-param>
+            <param-name>config.name</param-name>
+            <param-value>config.properties</param-value>
+        </init-param>
+        <init-param>
+            <param-name>jasper.template</param-name>
+            <param-value>jasper_report_template.jasper</param-value>
+        </init-param>
     </servlet>
 
 

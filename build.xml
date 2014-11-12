@@ -1,60 +1,59 @@
-<?xml version="1.0" ?> 
+<?xml version="1.0" ?>
 <project name="Planner" default="war">
 
-        <property name="build.dir" value="build"/>
-        <property name="src.dir" value="src/main"/>
-	<property name="resources.dir" value="${src.dir}/resources"/>
-	<property name="webinf.dir" value="${src.dir}/webapp/WEB-INF"/>
-        <property file="${resources.dir}/confing.properties"/>
+    <property name="build.dir" value="build"/>
+    <property name="src.dir" value="src/main"/>
+    <property name="resources.dir" value="${src.dir}/resources"/>
+    <property name="webinf.dir" value="${src.dir}/webapp/WEB-INF"/>
+    <property file="${resources.dir}/config.properties"/>
 
-	<path id="compile.classpath">
-		<fileset dir="lib">
-			<include name="*.jar"/>
-		</fileset>
-	</path>
+    <path id="compile.classpath">
+        <fileset dir="lib">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
 
-        <target name="init">
-		<mkdir dir="${build.dir}"/>
-            	<mkdir dir="${build.dir}/classes"/>
-        </target>
+    <target name="init">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${build.dir}/classes"/>
+    </target>
 
-        <target name="compile" depends="init" >
-                <javac srcdir="${src.dir}" destdir="${build.dir}/classes" classpathref="compile.classpath"/>
-        </target>
+    <target name="compile" depends="init">
+        <javac srcdir="${src.dir}" destdir="${build.dir}/classes" classpathref="compile.classpath"/>
+    </target>
 
-        <target name="war" depends="compile">
-		<war destfile="${build.dir}/${context.name}.war" webxml="${webinf.dir}/web.xml">
-                        <fileset dir="${src.dir}/webapp">
-                      		<include name="**/*.*"/>
-        	        </fileset>
-			<lib dir="lib"/>
-        	        <classes dir="${build.dir}/classes"/>
-                   	<classes dir="${resources.dir}" includes="*.*"/>
-        	</war>
-        </target>
-	
-	<target name="clean">
-		<delete dir="${build.dir}" />
-	</target>
+    <target name="war" depends="compile">
+        <war destfile="${build.dir}/${context.name}.war" webxml="${webinf.dir}/web.xml">
+            <fileset dir="${src.dir}/webapp">
+                <include name="**/*.*"/>
+            </fileset>
+            <lib dir="lib"/>
+            <classes dir="${build.dir}/classes"/>
+            <classes dir="${resources.dir}" includes="*.*"/>
+        </war>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
 
 
+    <target name="createTable">
+        <exec executable="createdb">
+            <arg value="--username=${bbdd.user}"/>
+            <arg value="-T"/>
+            <arg value="template0"/>
+            <arg value="${bbdd.sid}"/>
+        </exec>
+    </target>
 
-	<target name="createTable">
-                <exec executable="createdb">
-			<arg value="--username=${bbdd.user}"/>
-			<arg value="-T"/>
-                        <arg value="template0"/>
-                        <arg value="${bbdd.sid}"/>
-                </exec>
-        </target>
-		
-	<target name="restoreDB" depends="createTable">
-                <exec executable="psql">
-			<arg value="--username=${bbdd.user}"/>
-			<arg value="--dbname=${bbdd.sid}"/>
-                        <arg value="--file=${basedir}/db/planner.dump"/>
-                </exec>		
-	</target>
+    <target name="restoreDB" depends="createTable">
+        <exec executable="psql">
+            <arg value="--username=${bbdd.user}"/>
+            <arg value="--dbname=${bbdd.sid}"/>
+            <arg value="--file=${basedir}/db/planner.dump"/>
+        </exec>
+    </target>
 </project>
 
 
