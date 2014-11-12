@@ -38,7 +38,7 @@
     </target>
 
 
-    <target name="createTable">
+    <target name="createDB">
         <exec executable="createdb">
             <arg value="--username=${bbdd.user}"/>
             <arg value="-T"/>
@@ -47,7 +47,7 @@
         </exec>
     </target>
 
-    <target name="restoreDB" depends="createTable">
+    <target name="restoreDB" depends="createDB">
         <exec executable="psql">
             <arg value="--username=${bbdd.user}"/>
             <arg value="--dbname=${bbdd.sid}"/>

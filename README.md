@@ -19,4 +19,6 @@ Employee report planner
 	
 	"ant restoreDB" - creates new database and fills it with db/planner.dump schema
 
-3. Some implementation details...
+3. Some implementation details in file "implementation details.txt"
+
+4. For instructions to run application see "readme.txt"

@@ -63,7 +63,7 @@ public class ReportService {
             throw new IllegalArgumentException("report end date cannot be null");
         }
 
-        if (to > from) {
+        if (to < from) {
             throw new IllegalArgumentException("Report end date must be after start date");
         }
 
@@ -128,17 +128,25 @@ public class ReportService {
             throw new IllegalArgumentException("report end date cannot be null");
         }
 
-        if (to > from) {
+        if (to < from) {
             throw new IllegalArgumentException("Report end date must be after start date");
         }
-
-        String sql = String.format(REPORT_QUERY, from, to);
 
         ResultSet results = null;
 
         try {
-            Statement stmt = connection.createStatement();
-            results = stmt.executeQuery(sql);
+
+            if (preparedStatement == null) {
+                preparedStatement = connection.prepareStatement(REPORT_QUERY);
+            }
+
+            connection.setAutoCommit(false);
+
+            preparedStatement.setLong(1, from);
+            preparedStatement.setLong(2, to);
+
+            results = preparedStatement.executeQuery();
+
             JRResultSetDataSource resultSetDataSource = new JRResultSetDataSource(results);
             ByteArrayOutputStream os = new ByteArrayOutputStream();
 

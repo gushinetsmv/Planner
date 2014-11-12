@@ -14,7 +14,7 @@ import java.util.Properties;
 
 /**
  * Simple database Servlet keeps persistent database connection to work with.
- * Derived classes should use it to perform persistent operations (e.g. simple DML, or stored procedure invocations).
+ * Derived classes should use it to perform persistent operations (e.g. stored procedure invocations).
  *
  * @author Mikhail Gushinets
  * @since 07/11/14
@@ -27,7 +27,7 @@ public abstract class DatabaseServlet extends HttpServlet{
 
     private static final String CONFIG_FILE_PARAMETER = "config.name";
 
-    private static final String POSTGRES_URL_PATTERN = "jdbc.url=jdbc:postgresql://%s:%s/";
+    private static final String POSTGRES_URL_PATTERN = "jdbc.url=jdbc:postgresql://%s:%s/%s";
 
     private static final String POSTGRES_DRIVER_CLASS = "org.postgresql.Driver";
 
@@ -84,7 +84,7 @@ public abstract class DatabaseServlet extends HttpServlet{
             throw new IllegalArgumentException("Database password property (bbdd.password) can not be null");
         }
 
-        String url = String.format(POSTGRES_URL_PATTERN, host, port);
+        String url = String.format(POSTGRES_URL_PATTERN, host, port, sid);
 
         Properties props = new Properties();
         props.setProperty("user", user);
