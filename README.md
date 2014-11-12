@@ -17,6 +17,6 @@ Employee report planner
 	
 	"ant war" (or just "ant") - build .war
 	
-	"ant restoreDB" - creates new table in database and fills it with db/planner.dump schema
+	"ant restoreDB" - creates new database and fills it with db/planner.dump schema
 
 3. Some implementation details...
